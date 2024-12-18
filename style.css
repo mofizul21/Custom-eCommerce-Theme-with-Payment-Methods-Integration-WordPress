@@ -1,0 +1,651 @@
+/*
+    Theme Name: openboek_2024
+    Theme URI: 
+    Description: Theme for openboek_2024
+    Author: Jungju
+    Author URI: http://www.jungju.kr
+    Version: 1.0
+    Tags: none
+*/
+
+@font-face {
+    font-family: "Comic Sans";
+    src: url("./public/assets/fonts/comic_sans_ms/comic.ttf");
+}
+
+:root {
+    --std: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    font-family: "Comic Sans";
+    line-height: 1;
+    text-decoration: none;
+    text-transform: none;
+    list-style-type: none;
+    color: inherit;
+    font-size: inherit;
+    font-weight: 400;
+}
+
+*, html, body {
+    -webkit-text-size-adjust: 100%;
+       -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+    -ms-scroll-chaining: none;
+        overscroll-behavior: contain;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: manipulation;
+        touch-action: manipulation;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+html {
+    font-size: 1rem;
+}
+
+#app {
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+a:hover, button:hover {
+    cursor: pointer !important;
+    /* opacity: 0.5 !important; */
+}
+
+input[type="text"] {
+    border: none;
+    outline: none;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    -webkit-user-modify: read-write-plaintext-only;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+    color: rgb(100, 100, 100);
+}
+
+input[type="text"]::-moz-placeholder {
+    color: rgb(100, 100, 100);
+}
+
+input[type="text"]:-ms-input-placeholder {
+    color: rgb(100, 100, 100);
+}
+
+input[type="text"]::-ms-input-placeholder {
+    color: rgb(100, 100, 100);
+}
+
+input[type="text"]::placeholder {
+    color: rgb(100, 100, 100);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+/* app */
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* #app {
+    opacity: 0;
+}
+
+#app.active {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+} */
+
+/* header */
+#add-to-list-result {
+    position: fixed;
+    top: calc(var(--std) * (1.25 * 2.0 + (1.25 * 0.5)));
+    right: calc(var(--std) * (1.25 * 2.0));
+    background-color: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    pointer-events: all;
+    z-index: 100;
+    display: none;
+}
+
+#add-to-list-result.active {
+    display: block;
+    -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+#add-to-list-result .heading, #add-to-list-result .content {
+    font-size: 0.6rem;
+}
+
+#add-to-list-result .heading {
+    padding: 0 calc(var(--std) * 0.25);
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    height: calc((var(--std) * (2.125) - 1px) / 2);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+#add-to-list-result .content {
+    padding: 0 calc(var(--std) * (0.5));
+    height: calc((var(--std) * (2.125) - 1px) / 2);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+/* main-content */
+#main-content {
+    opacity: 0;
+}
+
+#main-content.active {
+    -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+#main-content.hide {
+    -webkit-animation-name: fadeOut;
+            animation-name: fadeOut;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+/* grid */
+#cont-guide {
+    pointer-events: none;
+    display: none;
+}
+
+#cont-guide.active {
+    display: block;
+}
+
+.grid {
+    z-index: 500;
+}
+
+.grid:nth-child(1) {
+    position: fixed;
+    top: calc(var(--std) * 2.5);
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(255, 0, 255);
+}
+
+.grid:nth-child(2) {
+    position: fixed;
+    top: calc(var(--std) * (2.5 + 2.125));
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(255, 0, 255);
+}
+
+.grid:nth-child(3) {
+    position: fixed;
+    top: calc(var(--std) * (2.5 + 2.125 + 1.0));
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(255, 0, 255);
+}
+
+.grid:nth-child(4) {
+    position: fixed;
+    top: calc(var(--std) * (2.5 + 2.125 + 1.0 + 2.125));
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(255, 0, 255);
+}
+
+.grid:nth-child(5) {
+    position: fixed;
+    top: calc(var(--std) * (2.5 + 2.125 + 1.0 + 2.125 + 2.5));
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(255, 0, 255);
+}
+
+.grid:nth-child(6) {
+    position: fixed;
+    bottom: calc(var(--std) * 2.5);
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(255, 0, 255);
+}
+
+.grid:nth-child(7) {
+    position: fixed;
+    top: 0;
+    left: calc((100% - 900px) / 2);
+    width: 1px;
+    height: 100%;
+    background-color: rgb(0, 255, 255);
+}
+
+.grid:nth-child(8) {
+    position: fixed;
+    top: 0;
+    right: calc((100% - 900px) / 2);
+    width: 1px;
+    height: 100%;
+    background-color: rgb(0, 255, 255);
+}
+
+.grid:nth-child(9) {
+    position: fixed;
+    top: 0;
+    left: calc((100% - 900px) / 2 + ((900px - (var(--std) * 1.25) * 2) / 3));
+    width: 1px;
+    height: 100%;
+    background-color: rgb(0, 255, 255);
+}
+
+.grid:nth-child(10) {
+    position: fixed;
+    top: 0;
+    left: calc((100% - 900px) / 2 + ((900px - (var(--std) * 1.25) * 2) / 3) + (var(--std) * 1.25));
+    width: 1px;
+    height: 100%;
+    background-color: rgb(0, 255, 255);
+}
+
+.grid:nth-child(11) {
+    position: fixed;
+    top: 0;
+    left: calc((100% - 900px) / 2 + ((900px - (var(--std) * 1.25) * 2) / 3 * 2) + (var(--std) * 1.25));
+    width: 1px;
+    height: 100%;
+    background-color: rgb(0, 255, 255);
+}
+
+.grid:nth-child(12) {
+    position: fixed;
+    top: 0;
+    left: calc((100% - 900px) / 2 + ((900px - (var(--std) * 1.25) * 2) / 3 * 2) + (var(--std) * 1.25) * 2.0);
+    width: 1px;
+    height: 100%;
+    background-color: rgb(0, 255, 255);
+}
+
+/* plane */
+.plane {
+    z-index: 250;
+}
+
+.plane:nth-child(1) {
+    position: fixed;
+    top: calc(var(--std) * 2.5);
+    left: 0;
+    width: 100%;
+    height: calc(var(--std) * 2.125);
+    background-color: rgba(255, 0, 255, 0.125);
+}
+
+.plane:nth-child(2) {
+    position: fixed;
+    top: calc(var(--std) * (2.5 + 2.125 + 1.0));
+    left: 0;
+    width: 100%;
+    height: calc(var(--std) * 2.125);
+    background-color: rgba(255, 0, 255, 0.125);
+}
+
+/* scroll */
+::-webkit-scrollbar {
+    width: calc(var(--std) * (1.25 * 0.5));
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(220, 220, 220);
+}
+
+/* responsive */
+@media screen and (max-width: 980px) {
+    .grid:nth-child(1) {
+        top: calc(var(--std) * (2.5 / 2));
+    }
+
+    .grid:nth-child(2) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 2.125));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+
+    .grid:nth-child(3) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 2.125 + 1.0));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+
+    .grid:nth-child(4) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 2.125 + 1.0 + 2.125));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+    
+    .grid:nth-child(5) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 2.125 + 1.0 + 2.125 + 2.5));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+    
+    .grid:nth-child(6) {
+        position: fixed;
+        bottom: calc(var(--std) * (2.5 / 2));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+
+    .grid:nth-child(7) {
+        display: none;
+    }
+    
+    .grid:nth-child(8) {
+        display: none;
+    }
+    
+    .grid:nth-child(9) {
+        display: none;
+    }
+    
+    .grid:nth-child(10) {
+        display: none;
+    }
+    
+    .grid:nth-child(11) {
+        position: fixed;
+        top: 0;
+        left: calc(var(--std) * (2.5 / 2));
+        width: 1px;
+        height: 100%;
+        background-color: rgb(0, 255, 255);
+    }
+    
+    .grid:nth-child(12) {
+        position: fixed;
+        top: 0;
+        left: auto;
+        right: calc(var(--std) * (2.5 / 2));
+        width: 1px;
+        height: 100%;
+        background-color: rgb(0, 255, 255);
+    }
+
+    .plane:nth-child(1) {
+        position: fixed;
+        top: calc(var(--std) * (2.5 / 2));
+        left: 0;
+        width: 100%;
+        height: calc(var(--std) * 1.5);
+        background-color: rgba(255, 0, 255, 0.125);
+    }
+
+    .plane:nth-child(1) {
+        position: fixed;
+        top: calc(var(--std) * (2.5 / 2));
+        left: 0;
+        width: 100%;
+        height: calc(var(--std) * 2.125);
+        background-color: rgba(255, 0, 255, 0.125);
+    }
+    
+    .plane:nth-child(2) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 2.125 + 1.0));
+        left: 0;
+        width: 100%;
+        height: calc(var(--std) * 2.125);
+        background-color: rgba(255, 0, 255, 0.125);
+    }
+
+    #add-to-list-result {
+        top: calc(var(--std) * ((2.5 / 2) + 2.125 + 1.0));
+        right: calc(var(--std) * (2.5 / 2));
+    }
+
+    #add-to-list-result, #add-to-list-result.active {
+        /* display: none; */
+    }
+}
+
+@media screen and (max-width: 740px) {
+    #cont-guide {
+        /* display: block; */
+    }
+
+    #add-to-list-result {
+        top: calc(var(--std) * ((2.5 / 2) + 1.5 + 1.0));
+        right: calc(var(--std) * (2.5 / 2));
+    }
+
+    #add-to-list-result .heading, #add-to-list-result .content {
+        font-size: 0.425rem;
+    }
+
+    #add-to-list-result .heading {
+        padding: 0 calc(var(--std) * (0.25));
+        height: calc((var(--std) * (1.5) - 1px) / 2);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
+
+    #add-to-list-result .content {
+        padding: 0 calc(var(--std) * (0.25));
+        height: calc((var(--std) * (1.5) - 1px) / 2);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
+
+    .grid:nth-child(1) {
+        top: calc(var(--std) * (2.5 / 2));
+    }
+
+    .grid:nth-child(2) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 1.5));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+
+    .grid:nth-child(3) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 1.5 + 1.0));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+
+    .grid:nth-child(4) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 1.5 + 1.0 + 1.5));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+    
+    .grid:nth-child(5) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 1.5 + 1.0 + 1.5 + (2.5 / 2)));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+    
+    .grid:nth-child(6) {
+        position: fixed;
+        bottom: calc(var(--std) * (2.5 / 2));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+    }
+
+    .grid:nth-child(7) {
+        position: fixed;
+        top: auto;
+        bottom: calc(var(--std) * ((2.5 / 2) + 1.875));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+        display: block;
+    }
+
+    .grid:nth-child(8) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 1.5 + 1.0 + 1.5 + (2.5 / 2) + 1.5));
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(255, 0, 255);
+        display: block;
+    }
+    
+    .plane:nth-child(1) {
+        position: fixed;
+        top: calc(var(--std) * (2.5 / 2));
+        left: 0;
+        width: 100%;
+        height: calc(var(--std) * 1.5);
+        background-color: rgba(255, 0, 255, 0.125);
+    }
+
+    .plane:nth-child(2) {
+        position: fixed;
+        top: calc(var(--std) * ((2.5 / 2) + 1.5 + 1.0));
+        left: 0;
+        width: 100%;
+        height: calc(var(--std) * 1.5);
+        background-color: rgba(255, 0, 255, 0.125);
+    }
+}
